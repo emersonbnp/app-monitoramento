@@ -15,7 +15,7 @@ import { faBackward } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from '../components/general/custom-button'
 
 
-class ViewLactente extends Component {
+class VisualizarLactente extends Component {
 	constructor(props) {
 		super(props);
 
@@ -159,7 +159,7 @@ class ViewLactente extends Component {
 				</View>
 			);
 		} catch (e) {
-			console.log(e);
+			console.error('Debug: ', e);
 		}
 	}
 
@@ -187,22 +187,20 @@ class ViewLactente extends Component {
 						});
 					})
 					.catch(e => {
-						console.log(e);
+						console.error('Debug: ', e);
 					});
 			})
 			.catch(e => {
-				console.log(e);
+				console.error('Debug: ', e);
 			});
 	}
 
 	async getVitalSigns() {
-		//   console.log('------->');
 		if (this.state.infant && this.state.infant.device) {
 			var url = params.url + "/vital-sign/" + this.state.infant.device;
 			axios
 				.get(url)
 				.then(resp => {
-					// console.log('-----> ' + JSON.stringify(resp))
 					this.setState({ bpm: JSON.stringify(resp.data.heartRate) });
 					this.setState({
 						ox: JSON.stringify(resp.data.oxygenLevel)
@@ -218,7 +216,7 @@ class ViewLactente extends Component {
 					}
 				})
 				.catch(e => {
-					console.log(e);
+					console.log('Debug: ', e);
 				});
 		}
 	}
@@ -344,4 +342,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default ViewLactente;
+export default VisualizarLactente;

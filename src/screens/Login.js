@@ -143,13 +143,12 @@ class Login extends Component {
 		axios
 			.post(url, data)
 			.then(resp => {
-				console.log(resp.data);
 				AsyncStorage.setItem("id", JSON.stringify(resp.data.codigo));
 				AsyncStorage.setItem("parent", JSON.stringify(resp.data));
 				navigation.navigate("Main");
 			})
 			.catch(e => {
-				console.log(e);
+				console.log('Debug: ', e);
 				Alert.alert("Usuário e/ou senha inválidos!");
 			});
 	}

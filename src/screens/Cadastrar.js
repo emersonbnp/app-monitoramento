@@ -11,7 +11,7 @@ import Header from '../components/Header'
 import params from '../params'
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios'
-class AddLactente extends Component {
+class Cadastrar extends Component {
 
     firstNameInput
 
@@ -259,4 +259,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddLactente;
+export default Cadastrar;

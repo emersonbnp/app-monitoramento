@@ -49,16 +49,16 @@ class Main extends Component {
 					this.setState({ infants: resp.data.infants });
 				})
 				.catch(e => {
-					console.log(e);
+					console.log('Debug: ', e);
 				});
 		});
 	}
 
 	goToInfant(navigation, infant) {
 		try {
-			navigation.navigate("ViewLactente", { infant: infant });
+			navigation.navigate("VisualizarLactente", { infant: infant });
 		} catch (e) {
-			console.error(e);
+			console.erroror(e);
 		}
 	}
 
@@ -107,7 +107,7 @@ class Main extends Component {
 					<View style={styles.buttonCenter}>
 						<CustomButton
 							onPress={() =>
-								this.props.navigation.navigate("AddLactente")
+								this.props.navigation.navigate("AdicionarLactente")
 							}
 							color={"#1A5276"}
 							width={300}
@@ -120,7 +120,6 @@ class Main extends Component {
 						<TouchableOpacity
 							style={[styles.button, styles.profileButton]}
 							onPress={() => {
-								console.log(this.state);
 								this.props.navigation.navigate("Profile", {
 									parent: this.state.parent
 								});
@@ -132,7 +131,7 @@ class Main extends Component {
 				</View>
 			);
 		} catch (e) {
-			console.log(e);
+			console.log('Debug: ', e);
 		}
 	}
 }

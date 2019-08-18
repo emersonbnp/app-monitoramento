@@ -1,9 +1,9 @@
 import Main from './screens/Main'
 import Login from './screens/Login'
-import AddLactente from './screens/AddLactente'
-import ViewLactente from './screens/ViewLactente'
-import SignUp from './screens/SignUp'
-import Profile from './screens/Profile'
+import AdicionarLactente from './screens/AdicionarLactente'
+import VisualizarLactente from './screens/VisualizarLactente'
+import Cadastrar from './screens/Cadastrar'
+import Perfil from './screens/Perfil'
 
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 
@@ -17,22 +17,22 @@ const MainNavigator = createBottomTabNavigator({
       tabBarVisible: false
     })
   },
-  AddLactente: {screen: AddLactente,
+  AdicionarLactente: {screen: AdicionarLactente,
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })
   },
-  ViewLactente: {screen: ViewLactente,
+  VisualizarLactente: {screen: VisualizarLactente,
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })
   },
-  SignUp: {screen: SignUp,
+  Cadastrar: {screen: Cadastrar,
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })
   },
-  Profile: {screen: Profile,
+  Perfil: {screen: Perfil,
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })
