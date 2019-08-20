@@ -46,9 +46,21 @@ class Cadastrar extends Component {
             })
     }
 
+    // async pickLocation (navigation) {
+    //     navigation.navigate('GooglePlaces')
+    // }
+
     render() {
 
         try {
+
+
+			const { navigation } = this.props;
+			if (navigation && navigation.getParam("local", undefined)) {
+				setLocalizaca(this.props)
+				console.log('CIDADE >>>>>>>>>>>>>>>>>> ', this.state.cidade)
+            }
+            
             return (
                 <View style={styles.wrapper}>
                     <Header></Header>
@@ -84,6 +96,26 @@ class Cadastrar extends Component {
                                 onChangeText={email => this.setState({ email })}
                             />
                         </View>
+                        <View style={styles.row}>
+                            <Text style={styles.txt}>Telefone: </Text>
+                        </View>
+                        <View style={styles.row}>
+                            <TextInput ref={input => { this.telefoneInput = input }}
+                                style={styles.input}
+                                value={this.state.telefone}
+                                onChangeText={telefone => this.setState({ telefone })}
+                            />
+                        </View>
+                        {/* <View style={styles.row}>
+                            <Text style={styles.txt}>Endereço: </Text>
+                        </View>
+                        <View style={styles.row}>
+                            <TextInput ref={input => { this.telefoneInput = input }}
+                                style={styles.input}
+                                placeholder='Rua e número'
+                                onTouchEnd={() => this.pickLocation(this.props.navigation)}
+                            />
+                        </View> */}
                         <View style={styles.row}>
                             <Text style={styles.txt}>Login: </Text>
                         </View>

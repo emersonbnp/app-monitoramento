@@ -4,6 +4,7 @@ import AdicionarLactente from './screens/AdicionarLactente'
 import VisualizarLactente from './screens/VisualizarLactente'
 import Cadastrar from './screens/Cadastrar'
 import Perfil from './screens/Perfil'
+import GooglePlacesInput from './screens/GooglePlaces'
 
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 
@@ -12,12 +13,12 @@ const MainNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })},
-  Main: {screen: Main,
-    navigationOptions: ({ navigation }) => ({
-      tabBarVisible: false
-    })
-  },
-  AdicionarLactente: {screen: AdicionarLactente,
+    Main: {screen: Main,
+      navigationOptions: ({ navigation }) => ({
+        tabBarVisible: false
+      })
+    },
+    AdicionarLactente: {screen: AdicionarLactente,
     navigationOptions: ({ navigation }) => ({
       tabBarVisible: false
     })
@@ -37,6 +38,10 @@ const MainNavigator = createBottomTabNavigator({
       tabBarVisible: false
     })
   },
+  GooglePlaces: {screen: GooglePlacesInput,
+    navigationOptions: ({ navigation }) => ({
+      tabBarVisible: false
+    })},
   
 });
 

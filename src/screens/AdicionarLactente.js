@@ -62,7 +62,14 @@ class AdicionarLactente extends Component {
 					latitude: "",
 					longitude: ""
 				}
-			}
+			},
+			city: '',
+			state: '',
+			district: '',
+			street: '',
+			number: '',
+			description: '',
+			set_local: true
 		};
 		this.labels = [
 			{
@@ -153,7 +160,7 @@ class AdicionarLactente extends Component {
 	}
 
 	async back(navigation) {
-		this.clearFieilds();
+		this.clearFields();
 		navigation.navigate("Main");
 	}
 
@@ -167,13 +174,20 @@ class AdicionarLactente extends Component {
 		infant.append("device", this.state.infant.device);
 		infant.append("latitude", this.state.infant.geolocation.latitude);
 		infant.append("longitude", this.state.infant.geolocation.longitude);
+		infant.append("city", this.state.city);
+		infant.append("state", this.state.state);
+		infant.append("district", this.state.district);
+		infant.append("street", this.state.street);
+		infant.append("number", this.state.number);
+		infant.append("zipcode", this.state.zipcode);
+		infant.append("description", this.state.description);
 		axios
 			.post(url, infant)
 			.then(() => {
 				axios
 					.get(params.url + "/parent/" + this.state.id)
 					.then(resp => {
-						this.clearFieilds();
+						this.clearFields();
 						navigation.navigate("Main", {
 							infants: resp.data.infants
 						});
@@ -187,8 +201,76 @@ class AdicionarLactente extends Component {
 			});
 	}
 
+	setLocalizacao(navigation) {
+		console.log(navigation.getParam("description", this.state.set_local))
+		if (navigation.getParam("description", undefined) && this.state.set_local) {
+			var city = navigation.getParam("city", undefined);
+			var state = navigation.getParam("state", undefined);
+			var district = navigation.getParam("district", undefined);
+			var number = navigation.getParam("number", undefined);
+			var zipcode = navigation.getParam("zipcode", undefined);
+			var street = navigation.getParam("street", undefined);
+			var latitude = navigation.getParam("latitude", undefined);
+			var longitude = navigation.getParam("longitude", undefined);
+			var description = navigation.getParam("description", undefined);
+			console.log('DESC: ', description)
+			this.setState({
+				city: city
+			});
+			this.setState({
+				description: description
+			});
+			this.setState({
+				zipcode: zipcode
+			});
+			this.setState({
+				state: state
+			});
+			this.setState({
+				district: district
+			});
+			this.setState({
+				street: street
+			});
+			this.setState({
+				number: number
+			});
+			this.setState({
+				zipcode: zipcode
+			});
+			this.setState(prevState => ({
+				infant: {
+					...prevState.infant,
+					geolocation: {
+						...prevState.infant.geolocation,
+						latitude: latitude
+					}
+				}
+			}));
+			this.setState(prevState => ({
+				infant: {
+					...prevState.infant,
+					geolocation: {
+						...prevState.infant.geolocation,
+						longitude: longitude
+					}
+				}
+			}));
+			this.setState({set_local: false})
+		}
+		console.log('geolocation -> ', this.state.infant.geolocation)
+	}
+
+	async pickLocation (navigation) {
+        navigation.navigate('GooglePlaces', navigation)
+    }
+
 	render() {
 		try {
+			const { navigation } = this.props;
+			if (navigation) {
+				this.setLocalizacao(navigation)
+			}
 			let elements = [];
 			this.labels.forEach(e => {
 				elements.push(
@@ -218,6 +300,20 @@ class AdicionarLactente extends Component {
 						style={styles.input}
 						value={this.state.infant.birthday}
 						onTouchEnd={this.pickDate.bind(this)}
+					/>
+				</View>
+			)
+			elements.push(
+				<View key={'end-1'} style={styles.row}>
+					<Text style={styles.txt}>Endereço: </Text>
+				</View>)
+			elements.push(
+				<View key={'end-2'} style={styles.row}>
+					<TextInput ref={input => { this.enderecoInput = input }}
+						style={styles.input}
+						value={this.state.description}
+						placeholder='rua e número'
+						onTouchEnd={() => this.pickLocation(this.props.navigation)}
 					/>
 				</View>
 			)
@@ -265,11 +361,11 @@ class AdicionarLactente extends Component {
 				</View>
 			);
 		} catch (e) {
-			console.error("Debug: ", e);
+			console.log("Debug: ", e);
 		}
 	}
 
-	clearFieilds() {
+	clearFields() {
 		// this.references.forEach(ref => {
 		// 	ref.clear()
 		// })

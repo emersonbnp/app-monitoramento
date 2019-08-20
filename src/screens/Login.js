@@ -24,7 +24,7 @@ class Login extends Component {
 
 	constructor(props) {
 		super(props);
-		OneSignal.init("e343031b-ccc7-44f2-aa67-0bec9402010b", {
+		OneSignal.init(params.one_signal_key, {
 			kOSSettingsKeyAutoPrompt: true
 		});
 		OneSignal.addEventListener("received", this.onReceived);
@@ -120,7 +120,7 @@ class Login extends Component {
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() =>
-							this.props.navigation.navigate("SignUp", {
+							this.props.navigation.navigate("Cadastrar", {
 								userid: this.state.userid
 							})
 						}
