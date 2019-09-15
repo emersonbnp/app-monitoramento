@@ -44,6 +44,7 @@ class VisualizarLactente extends Component {
 		const { navigation } = this.props;
 		if (navigation && navigation.getParam("infant", undefined)) {
 			this.setState({ infant: navigation.getParam("infant") });
+			console.log('INFANT ==== ', navigation.getParam("infant", undefined))
 		}
 	}
 
@@ -113,7 +114,7 @@ class VisualizarLactente extends Component {
 							<TextInput
 								style={styles.input}
 								editable={false}
-								value={JSON.stringify(this.state.infant.weight)}
+								value={JSON.stringify(this.state.infant.weight) + " kg"}
 							/>
 						</View>
 						<View style={styles.row}>
@@ -136,6 +137,16 @@ class VisualizarLactente extends Component {
 								style={styles.input}
 								editable={false}
 								value={this.state.infant.device}
+							/>
+						</View>
+						<View style={styles.row}>
+							<Text style={styles.txt}>Endereço: </Text>
+						</View>
+						<View style={styles.row}>
+							<TextInput
+								style={styles.input}
+								editable={false}
+								value={this.state.infant.description}
 							/>
 						</View>
 					</View>

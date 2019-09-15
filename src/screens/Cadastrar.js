@@ -26,7 +26,8 @@ class Cadastrar extends Component {
             email: '',
             password: '',
             username: '',
-            userid: ''
+            userid: '',
+            phone:''
         };
     }
 
@@ -36,7 +37,6 @@ class Cadastrar extends Component {
         if (navigation && navigation.getParam('userid', undefined)) {
             var userid = navigation.getParam('userid');
             this.setState({ userid: userid})
-            console.log('userid===============>', userid)
         }
 
         AsyncStorage.getItem('id')
@@ -46,10 +46,6 @@ class Cadastrar extends Component {
             })
     }
 
-    // async pickLocation (navigation) {
-    //     navigation.navigate('GooglePlaces')
-    // }
-
     render() {
 
         try {
@@ -58,7 +54,6 @@ class Cadastrar extends Component {
 			const { navigation } = this.props;
 			if (navigation && navigation.getParam("local", undefined)) {
 				setLocalizaca(this.props)
-				console.log('CIDADE >>>>>>>>>>>>>>>>>> ', this.state.cidade)
             }
             
             return (
@@ -102,20 +97,10 @@ class Cadastrar extends Component {
                         <View style={styles.row}>
                             <TextInput ref={input => { this.telefoneInput = input }}
                                 style={styles.input}
-                                value={this.state.telefone}
-                                onChangeText={telefone => this.setState({ telefone })}
+                                value={this.state.phone}
+                                onChangeText={phone => this.setState({ phone })}
                             />
                         </View>
-                        {/* <View style={styles.row}>
-                            <Text style={styles.txt}>Endereço: </Text>
-                        </View>
-                        <View style={styles.row}>
-                            <TextInput ref={input => { this.telefoneInput = input }}
-                                style={styles.input}
-                                placeholder='Rua e número'
-                                onTouchEnd={() => this.pickLocation(this.props.navigation)}
-                            />
-                        </View> */}
                         <View style={styles.row}>
                             <Text style={styles.txt}>Login: </Text>
                         </View>
@@ -131,6 +116,7 @@ class Cadastrar extends Component {
                         </View>
                         <View style={styles.row}>
                             <TextInput ref={input => { this.passwordInput = input }}
+                            secureTextEntry={true}
                                 style={styles.input}
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
@@ -171,6 +157,7 @@ class Cadastrar extends Component {
         data.append('password', this.state.password)
         data.append('username', this.state.username)
         data.append('userid', this.state.userid)
+        data.append('phone', this.state.phone)
 
         axios
             .post(url, data)

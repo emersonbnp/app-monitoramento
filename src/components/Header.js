@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 export default props => {
-    const header = <Text style={styles.buttonLabel}>SMSLAPP</Text>;
+    const header = <Text style={styles.buttonLabel}>APP</Text>;
     return (
         <View style={styles.container}>
         {header}

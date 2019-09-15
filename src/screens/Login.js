@@ -79,7 +79,7 @@ class Login extends Component {
 						Entre com seu nome de usuário e senha ou cadastre-se!
 					</Text>
 					<View style={styles.row}>
-						<Text style={styles.txt}>E-mail: </Text>
+						<Text style={styles.txt}>Login: </Text>
 					</View>
 					<View style={styles.row}>
 						<TextInput

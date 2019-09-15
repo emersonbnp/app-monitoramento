@@ -120,7 +120,7 @@ class Main extends Component {
 						<TouchableOpacity
 							style={[styles.button, styles.profileButton]}
 							onPress={() => {
-								this.props.navigation.navigate("Profile", {
+								this.props.navigation.navigate("Perfil", {
 									parent: this.state.parent
 								});
 							}}
