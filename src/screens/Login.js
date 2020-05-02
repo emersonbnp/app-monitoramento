@@ -24,7 +24,7 @@ class Login extends Component {
 
 	constructor(props) {
 		super(props);
-		OneSignal.init("e343031b-ccc7-44f2-aa67-0bec9402010b", {
+		OneSignal.init("<key>", {
 			kOSSettingsKeyAutoPrompt: true
 		});
 		OneSignal.addEventListener("received", this.onReceived);
